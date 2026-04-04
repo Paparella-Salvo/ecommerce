@@ -1,0 +1,8 @@
+.example-button-row {
+  margin: 0 16px 0 8px;
+  background-color: #7eb2c6;
+  border-radius: 12px;
+  border: 2px solid black;
+  width: 50px;
+  height: 50px;
+}

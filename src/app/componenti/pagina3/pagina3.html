@@ -1,0 +1,11 @@
+<h2>Carrello
+    <button matButton="filled" mat-icon-button  aria-hidden="false" (click)="navigateTo()">
+    <mat-icon fontIcon="home"></mat-icon> <!--class="iconShop"-->
+    </button>
+</h2>
+<div>
+    @for (prodotto of carrello; track prodotto) {
+        <p>- {{prodotto.nome}}: {{prodotto.pezzi}}
+        </p>
+    }
+</div>

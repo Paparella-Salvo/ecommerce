@@ -1,0 +1,17 @@
+<h2>Ricerca Catalogo
+    <button matButton="filled" mat-icon-button  aria-hidden="false" (click)="navigateTo()">
+    <mat-icon fontIcon="shopping_bag"></mat-icon> <!--class="iconShop"-->
+    </button>
+</h2>
+<div>
+    <form class="example-form">
+    <mat-form-field class="example-full-width">
+        <mat-label>Ricerca catalogo</mat-label>
+        <input matInput placeholder="Prodotto" value="{{prodotto.nome}}" (input)="onInput($event)">
+    </mat-form-field>
+    <button matButton="filled" class="example-button-row" (click)="ricerca($event)">Invia</button>
+    @if (bool == true) {
+        <p>{{ricercaCatalogo()}}</p>
+    }
+    </form>
+</div>

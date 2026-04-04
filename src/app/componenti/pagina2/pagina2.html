@@ -1,0 +1,13 @@
+<h2>Acquista Prodotti
+    <button matButton="filled" mat-icon-button  aria-hidden="false" (click)="navigateTo()">
+    <mat-icon fontIcon="shopping_cart"></mat-icon> <!--class="iconShop"-->
+    </button>
+</h2>
+<div> 
+    @for (prodotto of catalogo; track prodotto) {
+        <p>{{prodotto.nome}}:
+            <button matButton="filled" (click)="aggiungiProdotto(prodotto)">Aggiungi</button>
+            <button matButton="filled" (click)="rimuoviProdotto(prodotto)">Rimuovi</button>
+        </p>
+    }
+</div>
