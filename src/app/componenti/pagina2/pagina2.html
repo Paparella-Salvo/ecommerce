@@ -5,9 +5,9 @@
 </h2>
 <div> 
     @for (prodotto of catalogo; track prodotto) {
-        <p>{{prodotto.nome}}:
+        <p>{{prodotto.nome}} {{prodotto.pezzi}}:
             <button matButton="filled" (click)="aggiungiProdotto(prodotto)">Aggiungi</button>
-            <button matButton="filled" (click)="rimuoviProdotto(prodotto)">Rimuovi</button>
+            <button matButton="filled" (click)="rimuoviProdotto(prodotto)" [disabled]="Disabilitazione(prodotto)">Rimuovi</button> 
         </p>
     }
 </div>
