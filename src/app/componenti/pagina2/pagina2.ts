@@ -14,6 +14,8 @@ export class Pagina2 {
   private router = inject(Router);
   total: number = 0
   catalogo = this.merce.getCatalogo()
+  spesa = this.merce.getSpesa()
+  disable: boolean = false
 
   navigateTo(){
     this.router.navigate(['/pagina3']);
@@ -25,6 +27,17 @@ export class Pagina2 {
   rimuoviProdotto(prodotto: {nome: string, pezzi: number}){
     this.merce.rimuovi(prodotto)
   }  
+  
+  Disabilitazione(prodotto: {nome: string, pezzi: number}){
+    const esiste = this.spesa.find(n => n.nome === prodotto.nome)
+    const index = this.spesa.findIndex(s => s.nome === prodotto.nome);
+    if(esiste){
+      this.disable = false
+    } else {
+      this.disable = true
+    }
+    return this.disable
+  }
 }
 
 
