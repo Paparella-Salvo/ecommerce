@@ -29,7 +29,7 @@ export class Pagina1 {
   }
 
   navigateTo(){
-    this.router.navigate(['/pagina2']);
+    this.router.navigate(['/admin']);
   }
 
   ricerca(e: Event){
@@ -50,8 +50,6 @@ export class Pagina1 {
     while(this.i < this.catalogo.length){ 
       if(this.prodotto.nome.toLocaleLowerCase() === this.catalogo[this.i].nome.toLocaleLowerCase()){ 
         console.log("TROVATO",this.catalogo[this.i].nome)
-        //this.merce.aggiungi(this.prodotto)
-        //console.log("METODO AGGIUNGI:", this.merce.aggiungi(this.prodotto))
         this.i = 0
         this.trovato = true
         return this.prodotto.nome //this.trovato && 
