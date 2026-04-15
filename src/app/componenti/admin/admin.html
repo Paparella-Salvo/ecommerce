@@ -1,0 +1,21 @@
+<h2>Magazzino
+ <button matButton="filled" mat-icon-button  aria-hidden="false" (click)="navigateTo()">
+    <mat-icon fontIcon="home"></mat-icon>
+  </button>
+</h2>
+<form>
+ <mat-form-field>
+  <mat-label>Nome</mat-label>
+  <input matInput name="nome" [(ngModel)]="prodotto.nome" placeholder="Prodotto"> <!--value="{{prodotto.nome}}" (input)="onInput($event)-->
+ </mat-form-field>
+ <mat-form-field>
+  <mat-label>Pezzi</mat-label>
+  <input matInput name="pezzi" [(ngModel)]="prodotto.pezzi" placeholder="Pezzi"> <!--value="{{prodotto.pezzi}}-->
+ </mat-form-field>
+  <button matButton="filled" (click)="aggiungiMagazzino(prodotto)">Invio</button>
+</form>
+
+<h2>Prodotti in magazzino</h2>
+@for (prodotto of catalogo; track prodotto) {
+  <p>{{prodotto.nome}} {{prodotto.pezzi}}</p>
+}

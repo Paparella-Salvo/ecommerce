@@ -1,21 +1,31 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Prodotto } from './prodotto';
+import { Admin } from './componenti/admin/admin';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Ecommerce {
-  catalogo: Prodotto[] = [
-  {nome: 'penna', pezzi: 0},
-  {nome: 'matita', pezzi: 0},
-  {nome: 'gomma', pezzi: 0},
-  {nome: 'borsello', pezzi: 0},
-  {nome: 'quaderno', pezzi: 0},
-  {nome: 'pennarello', pezzi: 0}
- ];
- private spesa: Prodotto[] = []
+  
+  catalogo: Prodotto[] = []
+  private spesa: Prodotto[] = []
+
   getCatalogo(): {nome: string; pezzi: number}[]{
     return this.catalogo
+  }
+
+  aggiungiProdotto(prodotto: {nome: string, pezzi: number}){
+     const esiste = this.catalogo.find(n => n.nome === prodotto.nome)
+
+    if(!esiste){
+      this.catalogo.push({ nome: prodotto.nome, pezzi:  prodotto.pezzi})
+      console.log("CATALOGO: ", this.catalogo);
+      return this.catalogo
+    } else {
+      console.log("CATALOGO: ", this.catalogo);
+      esiste.pezzi = Number(esiste.pezzi) + Number(prodotto.pezzi) 
+      return "prodotto già presente"
+    }
   }
 
   getSpesa(): {nome: string; pezzi: number}[] {
