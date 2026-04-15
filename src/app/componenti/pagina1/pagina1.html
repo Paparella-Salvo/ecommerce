@@ -1,7 +1,7 @@
 <h2>Ricerca Catalogo
     <button matButton="filled" mat-icon-button  aria-hidden="false" (click)="navigateTo()">
-    <mat-icon fontIcon="shopping_bag"></mat-icon> <!--class="iconShop"-->
-    </button>
+    <mat-icon fontIcon="warehouse"></mat-icon>
+  </button>
 </h2>
 <div>
     <form class="example-form">
@@ -15,7 +15,6 @@
             {{ricercaCatalogo()}}
             @if(trovato == true){
                 <mat-checkbox class="example-margin" (change)="update($event.checked)"></mat-checkbox>
-
             }
         </p>
     }
