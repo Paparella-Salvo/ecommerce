@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
-import { FormControl, FormGroup, FormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NonNullableFormBuilder, Validators } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; 
 import { Ecommerce } from '../../ecommerce';
-import {MatButtonModule} from '@angular/material/button';
 import { MatIcon } from "@angular/material/icon";
 import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -20,20 +19,22 @@ export class Admin {
   catalogo = this.magazzino.getCatalogo()
   prodotto: {nome: string; pezzi: number} = {nome: "", pezzi: 0}
   homeform = new FormGroup({
-      nome: new FormControl('', Validators.maxLength(5)),
-      pezzi: new FormControl(0, Validators.min(0))
+      nome: new FormControl<string>('', [Validators.required, Validators.maxLength(5)]), 
+      pezzi: new FormControl(0, [Validators.required, Validators.min(1)])
     })
 
   navigateTo(){
     this.router.navigate(['/pagina1']);
   }
 
-  getMagazzino(){
-    return this.magazzino
-  }
-
   aggiungiMagazzino(prodotto: {nome: string, pezzi: number}){
-    this.magazzino.aggiungiProdotto(prodotto)
+    if(this.homeform.value.nome != null){
+      prodotto.nome = this.homeform.value.nome
+    } if(this.homeform.value.pezzi != null){
+      prodotto.pezzi = this.homeform.value.pezzi
+    }
+    this.magazzino.aggiungiProdotto(this.prodotto)
   }
 
 }
+
