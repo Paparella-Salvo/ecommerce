@@ -28,7 +28,19 @@ export class Pagina2 {
     this.merce.rimuovi(prodotto)
   }  
   
-  Disabilitazione(prodotto: {nome: string, pezzi: number}){
+  DisabilitazioneAggiunta(prodotto: {nome: string, pezzi: number}){
+    const esiste = this.catalogo.find(n => n.nome === prodotto.nome)
+    if(esiste){
+      if(esiste.pezzi == 0){
+        this.disable = true
+      } else {
+        this.disable = false
+      }
+    }
+    return this.disable
+  }
+
+  DisabilitazioneRimozione(prodotto: {nome: string, pezzi: number}){
     const esiste = this.spesa.find(n => n.nome === prodotto.nome)
     const index = this.spesa.findIndex(s => s.nome === prodotto.nome);
     if(esiste){
@@ -39,5 +51,3 @@ export class Pagina2 {
     return this.disable
   }
 }
-
-
