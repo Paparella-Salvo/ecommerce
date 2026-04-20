@@ -1,13 +1,21 @@
 <h2>Acquista Prodotti
     <button matButton="filled" mat-icon-button  aria-hidden="false" (click)="navigateTo()">
-    <mat-icon fontIcon="shopping_cart"></mat-icon> <!--class="iconShop"-->
+    <mat-icon fontIcon="shopping_cart"></mat-icon> 
     </button>
 </h2>
 <div> 
     @for (prodotto of catalogo; track prodotto) {
         <p>{{prodotto.nome}} {{prodotto.pezzi}}:
-            <button matButton="filled" (click)="aggiungiProdotto(prodotto)">Aggiungi</button>
-            <button matButton="filled" (click)="rimuoviProdotto(prodotto)" [disabled]="Disabilitazione(prodotto)">Rimuovi</button> 
+            <button matButton="filled" (click)="aggiungiProdotto(prodotto)" [disabled]="DisabilitazioneAggiunta(prodotto)">Aggiungi</button>
+            <button matButton="filled" (click)="rimuoviProdotto(prodotto)" [disabled]="DisabilitazioneRimozione(prodotto)">Rimuovi</button> 
+        </p>
+    }
+</div>
+<p></p>
+<h3>Lista della spesa:</h3>
+<div>
+    @for (prodotto of spesa; track prodotto) {
+        <p>- {{prodotto.nome}}: {{prodotto.pezzi}}
         </p>
     }
 </div>

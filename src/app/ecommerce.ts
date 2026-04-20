@@ -6,7 +6,6 @@ import { Admin } from './componenti/admin/admin';
   providedIn: 'root',
 })
 export class Ecommerce {
-  
   catalogo: Prodotto[] = []
   private spesa: Prodotto[] = []
 
@@ -33,27 +32,41 @@ export class Ecommerce {
   }
 
   aggiungi(prodotto: {nome: string, pezzi: number}){
-    const esiste = this.spesa.find(n => n.nome === prodotto.nome)
+    const esisteSpesa = this.spesa.find(n => n.nome === prodotto.nome)
+    const esisteCatalogo = this.catalogo.find(n => n.nome === prodotto.nome)
 
-    if(esiste){
-      esiste.pezzi += 1
-    } else {
-      this.spesa.push({ nome: prodotto.nome, pezzi: 1 })
+    if(esisteCatalogo){
+      if(esisteCatalogo.pezzi >= 1){
+        if(esisteSpesa){
+          esisteSpesa.pezzi += 1
+          esisteCatalogo.pezzi -=1
+        } else {
+          this.spesa.push({ nome: prodotto.nome, pezzi: 1 })
+          esisteCatalogo.pezzi -=1
+        } 
+      } 
     }
+    console.log("AGGIORNAMENTO CATALOGO", this.catalogo)
     console.log("SPESA: ", this.spesa);
   }
 
   rimuovi(prodotto: {nome: string, pezzi: number}){
-    const esiste = this.spesa.find(n => n.nome === prodotto.nome)
+    const esisteSpesa = this.spesa.find(n => n.nome === prodotto.nome)
     const index = this.spesa.findIndex(s => s.nome === prodotto.nome);
+    const esisteCatalogo = this.catalogo.find(n => n.nome === prodotto.nome)
 
-    if(esiste?.pezzi == 1){
-      this.spesa.splice(index, 1);
+    if(esisteCatalogo){
+      if(esisteSpesa){
+        if(esisteSpesa.pezzi == 1){
+          this.spesa.splice(index, 1);
+          esisteCatalogo.pezzi += 1
+        } else {
+          esisteSpesa.pezzi -= 1
+          esisteCatalogo.pezzi +=1 
+        }
+      }
     }
-    if(esiste){
-      esiste.pezzi -= 1
-    }
-    
+    console.log("AGGIORNAMENTO CATALOGO", this.catalogo)
     console.log("SPESA: ", this.spesa)
   }
 }

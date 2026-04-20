@@ -3,16 +3,16 @@
     <mat-icon fontIcon="home"></mat-icon>
   </button>
 </h2>
-<form>
+<form [formGroup]="homeform" (ngSubmit)="aggiungiMagazzino(prodotto)"> 
  <mat-form-field>
   <mat-label>Nome</mat-label>
-  <input matInput name="nome" [(ngModel)]="prodotto.nome" placeholder="Prodotto"> <!--value="{{prodotto.nome}}" (input)="onInput($event)-->
+  <input matInput name="nome" placeholder="Prodotto"  formControlName="nome"> 
  </mat-form-field>
  <mat-form-field>
   <mat-label>Pezzi</mat-label>
-  <input matInput name="pezzi" [(ngModel)]="prodotto.pezzi" placeholder="Pezzi"> <!--value="{{prodotto.pezzi}}-->
+  <input matInput name="pezzi" type="number" placeholder="0" formControlName="pezzi"> 
  </mat-form-field>
-  <button matButton="filled" (click)="aggiungiMagazzino(prodotto)">Invio</button>
+  <button matButton="filled" type="submit" [disabled]="!homeform.valid">Invio</button> 
 </form>
 
 <h2>Prodotti in magazzino</h2>

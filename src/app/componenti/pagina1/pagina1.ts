@@ -52,12 +52,12 @@ export class Pagina1 {
         console.log("TROVATO",this.catalogo[this.i].nome)
         this.i = 0
         this.trovato = true
-        return this.prodotto.nome //this.trovato && 
+        return this.prodotto.nome 
       } 
       this.i++
     }
     this.i = 0
-    console.log("BOLLO", this.bool = false)
+    console.log("BOOL", this.bool = false)
     this.bool = false
     this.trovato = false
     return "Prodotto NON trovato"
